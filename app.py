@@ -49,9 +49,9 @@ import hashlib
 
 st.set_page_config(page_title="Ask Your Assistant", layout="wide")
 load_dotenv(dotenv_path=".env")
-supabase_url = os.getenv("SUPABASE_URL")
-supabase_key = os.getenv("SUPABASE_KEY")
-#supabase_url2=os.getenv("SUPABASE_URL2")
+supabase_url = st.secrets["SUPABASE_URL"]
+supabase_key = st.secrets["SUPABASE_KEY"]
+
 
 supabase = create_client(supabase_url, supabase_key)
 
@@ -59,8 +59,8 @@ supabase = create_client(supabase_url, supabase_key)
 BUCKET_NAME = "collegequestionpapers"
  # change if needed
 AWS_REGION="ap-south-1"
-AWS_ACCESS_KEY_ID=os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_KEY=os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID=st.secrets["AWS_ACCESS_KEY_ID"]
+AWS_SECRET_KEY=st.secrets["AWS_SECRET_ACCESS_KEY"]
 
 try:
     s3 = boto3.client(
@@ -503,9 +503,9 @@ def get_llm():
     Reads GROQ_API_KEY from environment (.env recommended).
     """
     
-    api_key = os.getenv('GROQ_API_KEY')
+    api_key = st.secrets['GROQ_API_KEY']
 
-    model_name = os.getenv("GROQ_MODEL_NAME", "llama-3.1-8b-instant")
+    model_name = st.secrets["GROQ_MODEL_NAME", "llama-3.1-8b-instant"]
     if not api_key or ChatGroq is None:
         return None
     try:
