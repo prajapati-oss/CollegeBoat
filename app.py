@@ -48,7 +48,7 @@ import hashlib
 
 
 st.set_page_config(page_title="Ask Your Assistant", layout="wide")
-load_dotenv(dotenv_path=".env")
+
 supabase_url = st.secrets["SUPABASE_URL"]
 supabase_key = st.secrets["SUPABASE_KEY"]
 
@@ -63,24 +63,20 @@ AWS_ACCESS_KEY_ID=st.secrets["AWS_ACCESS_KEY_ID"]
 AWS_SECRET_KEY=st.secrets["AWS_SECRET_ACCESS_KEY"]
 
 try:
-    s3 = boto3.client(
-    "s3",
-    region_name="ap-south-1",
-    aws_access_key_id=AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_SECRET_KEY
-
-)
+    supabase = create_client(
+        st.secrets["SUPABASE_URL"],
+        st.secrets["SUPABASE_KEY"]
+    )
 except Exception as e:
-    st.error("S3 initialization erro {e}")
-    s3=None
+    st.error(f"Supabase init failed: {e}")
+    st.stop()
 
 os.environ["STREAMLIT_SERVER_FILE_WATCHER_TYPE"] = "none"
 asyncio.set_event_loop(asyncio.new_event_loop())
 BASE_PATH = r"C:/Users/praja/Desktop/Sreamlit/myproject/data1/question_paper"
 
 
-# Load .env (if present)
-load_dotenv()
+
 
 # Decorator
 
@@ -136,7 +132,9 @@ pdf_keywords = [
 
 @st.cache_resource(ttl=3600)
 def get_vectorstore():
+    
     """Load vectorstore from Supabase with proper configuration."""
+    
     try:
         # Embedding model
         embedding = HuggingFaceEmbeddings(
@@ -503,9 +501,10 @@ def get_llm():
     Reads GROQ_API_KEY from environment (.env recommended).
     """
     
-    api_key = st.secrets['GROQ_API_KEY']
+    api_key = st.secrets.get("GROQ_API_KEY")
 
-    model_name = st.secrets["GROQ_MODEL_NAME", "llama-3.1-8b-instant"]
+
+    model_name = st.secrets.get("GROQ_MODEL_NAME", "llama-3.1-8b-instant")
     if not api_key or ChatGroq is None:
         return None
     try:
