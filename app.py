@@ -10,8 +10,8 @@ from streamlit_mic_recorder import mic_recorder
 import tempfile
 
 import streamlit as st
-from langchain_core.prompts import ChatPromptTemplate
-
+#from langchain_core.prompts import ChatPromptTemplate
+from langchain.prompts import ChatPromptTemplate
 #from langchain.chains.retrieval import create_retrieval_chain
 from langchain.chains import create_retrieval_chain
 from langchain_huggingface import HuggingFaceEmbeddings
