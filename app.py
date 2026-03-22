@@ -14,7 +14,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from langchain.chains.retrieval import create_retrieval_chain
 
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
@@ -23,7 +23,7 @@ from langchain_community.vectorstores import SupabaseVectorStore
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from dotenv import load_dotenv
+
 
 import tempfile
 from langchain_community.document_loaders import TextLoader,CSVLoader
@@ -39,7 +39,7 @@ import re
 
 from datetime import datetime
 
-import boto3
+
 import uuid
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
@@ -73,7 +73,7 @@ except Exception as e:
 
 os.environ["STREAMLIT_SERVER_FILE_WATCHER_TYPE"] = "none"
 asyncio.set_event_loop(asyncio.new_event_loop())
-BASE_PATH = r"C:/Users/praja/Desktop/Sreamlit/myproject/data1/question_paper"
+BASE_PATH = os.path.join(os.path.dirname(__file__), "data1", "question_paper")
 
 
 
@@ -643,7 +643,7 @@ h1, h2, h3, h4, h5, h6 {
         with open(file_path, "rb") as f:
             return base64.b64encode(f.read()).decode()
 
-    img = get_base64(r"C:\Users\praja\Desktop\MYCOLLEGECHATBOAT\data\adrian-infernus-GLf7bAwCdYg-unsplash.jpg")
+    img = get_base64(os.path.join(os.path.dirname(__file__), "data", "adrian-infernus-GLf7bAwCdYg-unsplash.jpg"))
     
     st.markdown(
     f"""
@@ -751,7 +751,7 @@ h1, h2, h3, h4, h5, h6 {
         with open(path, "rb") as f:
             return base64.b64encode(f.read()).decode()
 
-    header_img = load_image_base64(r"C:\Users\praja\Desktop\MYCOLLEGECHATBOAT\data\Screenshot 2025-11-26 231110.png")
+    header_img = load_image_base64(os.path.join(os.path.dirname(__file__), "data", "Screenshot 2025-11-26 231110.png"))
     st.markdown(
     f"""
     <style>
@@ -985,7 +985,7 @@ Your messages and replies appear clearly in the chat. Scroll to view older answe
             
 
 
-    passwordfile=r"C:\Users\praja\Desktop\MYCOLLEGECHATBOAT\data\PASSWORD_FILE.txt"
+    passwordfile=os.path.join(os.path.dirname(__file__), "data", "PASSWORD_FILE.txt")
 
     def load_password():
 
@@ -1324,7 +1324,7 @@ Your messages and replies appear clearly in the chat. Scroll to view older answe
          with open(path, "rb") as f:
            return base64.b64encode(f.read()).decode()
 
-       icon_img = load_image_base64(r"C:\Users\praja\Desktop\MYCOLLEGECHATBOAT\data\msitmlogo2-removebg-preview.png")
+       icon_img = load_image_base64(os.path.join(os.path.dirname(__file__), "data", "msitmlogo2-removebg-preview.png"))
 
        st.markdown(f"""
             <style>
@@ -1365,7 +1365,7 @@ Your messages and replies appear clearly in the chat. Scroll to view older answe
            with open(path, "rb") as f:
                return base64.b64encode(f.read()).decode()
 
-       msitmlogo= load_image_base64(r"C:\Users\praja\Desktop\MYCOLLEGECHATBOAT\data\MSITM-Cboat_logo_design2-removebg-preview.png")
+       msitmlogo= load_image_base64(os.path.join(os.path.dirname(__file__), "data", "MSITM-Cboat_logo_design2-removebg-preview.png"))
        
        st.markdown(f"""
 <style>

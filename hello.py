@@ -2,3 +2,27 @@ import streamlit as st
 
 st.write("URL:", st.secrets.get("SUPABASE_URL"))
 st.write("KEY exists:", "SUPABASE_KEY" in st.secrets)
+
+streamlit==1.45.1
+pillow==10.4.0
+supabase==2.3.4
+gotrue==1.3.1
+httpx==0.27.2
+streamlit-mic-recorder==0.0.8
+
+langchain==0.2.16
+langchain-community==0.2.16
+langchain-core==0.2.38
+langchain-text-splitters==0.2.4
+langchain-groq==0.1.9
+langchain-huggingface==0.0.3
+
+faiss-cpu==1.7.4
+sentence-transformers==2.7.0
+
+python-dotenv==1.2.1
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.27.3
+
+boto3==1.41.2
+pypdf==4.2.0
