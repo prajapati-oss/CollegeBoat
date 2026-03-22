@@ -457,6 +457,8 @@ def vectore_database(verctors):
 @timed_cache(ttl_seconds=600)
 def search_vectors(query_embedding):
 
+    
+
     response = supabase.rpc(
         "match_documents",
         {
@@ -464,9 +466,13 @@ def search_vectors(query_embedding):
             "match_threshold": 0.4,
             "match_count": 1
         }
-    ).execute()
+    )
 
-    return response.data 
+    response = rpc_call.execute()
+
+    return response.data if response.data else []
+
+    #return response.data 
                                                                                          
 
 @timed_cache(ttl_seconds=600)
