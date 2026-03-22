@@ -4,3 +4,4 @@ __pycache__/
 venv/
 env/
 PASSWORD_FILE.txt
+.streamlit/secrets.toml
