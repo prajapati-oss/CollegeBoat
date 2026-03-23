@@ -596,7 +596,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .bottom-black-strip {
     position: fixed;
-    bottom: 0;
+    bottom: 3px;
     left: 1;
     width: 77%;
     height: 0.8cm;
@@ -807,12 +807,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Fixed chat input bar at bottom but centered */
 [data-testid="stChatInput"] {
     position: fixed !important;
-    bottom: 20px !important;
+    bottom: 40px !important;
     left: 58% !important;
-    transform: translateX(-50%) !important;
+    transform: translateX(-60%) !important;
 
-    width: 70% !important;        /* full width but with side space */
-    max-width: 900px !important;  /* keeps it neat on big screens */
+    width: 90% !important;        /* full width but with side space */
+    max-width: 920px !important;  /* keeps it neat on big screens */
 
     z-index: 999999 !important;
 
@@ -1378,8 +1378,8 @@ Your messages and replies appear clearly in the chat. Scroll to view older answe
 /* HARD RESET for logo */
 .top-icon2 {{
     position: fixed;
-    top: 40px;
-    left: 17%;
+    top: 110px;
+    left: 7%;
     transform: translateX(-50%);
 
     width: 140px;
