@@ -138,7 +138,8 @@ def get_vectorstore():
     try:
         # Embedding model
         embedding = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L6-v2"
+            model_name="sentence-transformers/all-MiniLM-L6-v2",
+            model_kwargs={'device': 'cpu'}
         )
 
         supabase_client = supabase
@@ -432,7 +433,10 @@ def creat_chunks(extract_chunks):
     return text_chunks
 
 
-embedding_model=HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+embedding_model=HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2",
+    model_kwargs={'device': 'cpu'}
+)
     
 #@timed_cache(ttl_seconds=600)
 def Creat_Embedding(chunks): 
