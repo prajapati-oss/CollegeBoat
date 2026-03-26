@@ -139,7 +139,7 @@ def get_vectorstore():
         # Embedding model
         embedding = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-MiniLM-L6-v2",
-            model_kwargs={'device': 'cpu', 'model_kwargs': {'low_cpu_mem_usage': False}}
+            model_kwargs={'device': 'cpu'}
         )
 
         supabase_client = supabase
@@ -435,7 +435,7 @@ def creat_chunks(extract_chunks):
 
 embedding_model=HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
-    model_kwargs={'device': 'cpu', 'model_kwargs': {'low_cpu_mem_usage': False}}
+    model_kwargs={'device': 'cpu'}
 )
     
 #@timed_cache(ttl_seconds=600)
