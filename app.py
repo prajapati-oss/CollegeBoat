@@ -1621,9 +1621,9 @@ section[data-testid="stSidebar"] > div {
                       role="assistant",
                        message=full_response
                                             )
-            st.session_state.messages.append({"role": "assistant", "content": answer})
+            st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-            save_chat(user_id=st.session_state.user_id,role="assistant",message=answer)
+            save_chat(user_id=st.session_state.user_id,role="assistant",message=full_response)
             
         else:
             # If no rag_chain but LLM exists, run simple LLM-only response (optional)
