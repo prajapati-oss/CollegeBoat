@@ -1598,8 +1598,26 @@ section[data-testid="stSidebar"] > div {
         if intent=="generator":
             #response = rag_chain.invoke({"input": prompt})\\
 
-            answer = llm.invoke(GENERATOR_PROMPT.format(question=prompt)).content
-            st.chat_message("assistant" ).markdown(f'<span style="color:black;">{answer}</span>',unsafe_allow_html=True)
+            with st.chat_message("assistant"): 
+                message_placeholder=st.empty()
+                full_response=""
+                response=llm.stream(
+                    GENERATOR_PROMPT.format(question=prompt)
+                )
+                for chunk in response: 
+                    if hasattr(chunk,"content"): 
+                        full_response += chunk.content
+                        message_placeholder.markdown(full_response+" ")
+                        time.sleep(0.03)
+                message_placeholder.markdown(full_response)
+
+                st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+                save_chat(
+                      user_id=st.session_state.user_id,
+                      role="assistant",
+                       message=full_response
+                                            )
             st.session_state.messages.append({"role": "assistant", "content": answer})
 
             save_chat(user_id=st.session_state.user_id,role="assistant",message=answer)
