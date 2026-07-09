@@ -3745,7 +3745,7 @@ def creat_chunks(extract_chunks):
 
 
 embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2")
+    model_name="sentence-transformers/all-MiniLM-L6-v2",model_kwargs={"device": "cpu"})
 
 #@timed_cache(ttl_seconds=600)
 if "vectors" not in st.session_state:
