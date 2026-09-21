@@ -3315,7 +3315,7 @@ import base64
 
 
 import tempfile
-
+from groq import Groq
 import streamlit as st
 #from langchain_core.prompts import ChatPromptTemplate
 from langchain.prompts import ChatPromptTemplate
@@ -3338,6 +3338,7 @@ from langchain_community.document_loaders import TextLoader,CSVLoader
 
 try:
     from langchain_groq import ChatGroq
+    from groq import Groq
 except Exception:
     ChatGroq = None
 
@@ -3837,7 +3838,7 @@ def get_llm():
     if not api_key or ChatGroq is None:
         return None
     try:
-        llm = ChatGroq(model=model_name, temperature=0.5, api_key=api_key, max_tokens=800)
+        llm = Groq(model=model_name, temperature=0.5, api_key=api_key, max_tokens=800)
         return llm
     except Exception as e:
         st.warning(f"Could not initialize LLM: {e}")
